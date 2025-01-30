@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Run unit tests with coverage
-      run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+      run: dotnet test --configuration Release --no-restore --logger trx --results-directory TestResults /p:CollectCoverage=true /p:CoverletOutput=TestResults/coverage.opencover.xml /p:CoverletOutputFormat=opencover --collect:"XPlat Code Coverage"
 
     - name: Generate coverage report
       run: |
