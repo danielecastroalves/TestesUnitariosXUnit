@@ -29,9 +29,15 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
       
-    - name: Run Tests
-      run: dotnet test --configuration Release --no-restore --logger trx --results-directory TestResults /p:CollectCoverage=true /p:CoverletOutput=TestResults/coverage.opencover.xml /p:CoverletOutputFormat=opencover
-
+    - name: Run Tests with coverage
+      run: |
+          mkdir -p TestResults
+          dotnet test --configuration Release --no-restore \
+            --logger trx --results-directory TestResults \
+            /p:CollectCoverage=true \
+            /p:CoverletOutputFormat=opencover \
+            /p:CoverletOutput=TestResults/coverage
+            
     - name: Generate coverage report
       run: |
          dotnet tool install --global dotnet-reportgenerator-globaltool
