@@ -29,37 +29,24 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
       
-    - name: Run Tests with coverage
-      run: |
-          mkdir -p TestResults
-          dotnet test --configuration Release --no-restore \
-            --logger trx --results-directory TestResults \
-            /p:CollectCoverage=true \
-            /p:CoverletOutputFormat=opencover \
-            /p:CoverletOutput=TestResults/coverage
-            
+    - name: Run unit tests with coverage
+      run: dotnet test tests/UnitTests/UnitTests.csproj --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+
     - name: Generate coverage report
       run: |
-         dotnet tool install --global dotnet-reportgenerator-globaltool
-         reportgenerator -reports:TestResults/coverage.opencover.xml -targetdir:TestResults/CoverageReport -reporttypes:Html           
-  
-    - name: Upload test results
+        dotnet tool install --global dotnet-reportgenerator-globaltool
+        reportgenerator "-reports:**/coverage.cobertura.xml" "-targetdir:coverage-report" -reporttypes:Html
+
+    - name: Publish Test Results
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: test-results
-        path: TestResults
-          
-    - name: Upload coverage report
+        path: '**/*.trx'
+
+    - name: Upload Code Coverage Report
+      if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: coverage-report
-        path: TestResults/CoverageReport
-
-    - name: Publish artifact
-      run: dotnet publish -c Release -o output
-
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: application-artifact
-        path: output
+        name: code-coverage-report
+        path: 'coverage-report/**'
