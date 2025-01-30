@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Run unit tests with coverage
-      run: dotnet test tests/UnitTests/UnitTests.csproj --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+      run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
 
     - name: Generate coverage report
       run: |
