@@ -1,0 +1,29 @@
+root = true
+
+[*]
+indent_style = space
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.cs]
+indent_size = 4
+dotnet_sort_system_directives_first = true
+
+###############################
+# C# Sonar Qube rules         #
+###############################
+# Code Smells
+dotnet_diagnostic.S4487.severity = error
+dotnet_diagnostic.CS0219.severity = error
+# Categories
+dotnet_analyzer_diagnostic.category-Security.severity = error
+
+###############################
+# C# Coding Conventions       #
+###############################
+# RCS1058: Use compound assignment.
+dotnet_diagnostic.RCS1058.severity = error
+
+# RCS1170: Use read-only auto-implemented property.
+dotnet_diagnostic.RCS1170.severity = silent
