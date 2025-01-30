@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FC9B9029-322
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6CCA4043-8658-4ED3-AEA7-4FA320B4D0EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadoraFinanceira", "CalculadoraFinanceira\CalculadoraFinanceira.csproj", "{CA2938C5-43C5-4F22-B66A-21B71748A159}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculadoraFinanceira", "CalculadoraFinanceira\CalculadoraFinanceira.csproj", "{CA2938C5-43C5-4F22-B66A-21B71748A159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadoraFinanceira.Tests", "CalculadoraFinanceira.Tests\CalculadoraFinanceira.Tests.csproj", "{9D91BFEA-86C8-44CB-8D3F-CB80B432E260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculadoraFinanceira.Tests", "CalculadoraFinanceira.Tests\CalculadoraFinanceira.Tests.csproj", "{9D91BFEA-86C8-44CB-8D3F-CB80B432E260}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
