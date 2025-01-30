@@ -30,13 +30,19 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Run Tests
-      run: dotnet test --configuration Release --no-restore --logger trx --results-directory TestResults
+      run: dotnet test --configuration Release --no-restore --logger trx --results-directory TestResults /p:CollectCoverage=true /p:CoverletOutput=TestResults/coverage.opencover.xml /p:CoverletOutputFormat=opencover
 
     - name: Generate coverage report
       run: |
          dotnet tool install --global dotnet-reportgenerator-globaltool
-         reportgenerator -reports:TestResults/coverage.opencover.xml -targetdir:TestResults/CoverageReport -reporttypes:Html
-   
+         reportgenerator -reports:TestResults/coverage.opencover.xml -targetdir:TestResults/CoverageReport -reporttypes:Html           
+  
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: TestResults
+          
     - name: Upload coverage report
       uses: actions/upload-artifact@v4
       with:
