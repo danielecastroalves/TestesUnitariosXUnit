@@ -1,8 +1,10 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
+# Nome do Workflow
 name: CI Build and Test
 
+# Disparadores: Executa o workflow em cada push ou pull request na branch "main"
 on:
   push:
     branches: [ "main" ]
@@ -11,41 +13,49 @@ on:
 
 jobs:
   build:
-
+    # Define que a pipeline será executada em uma máquina com Ubuntu
     runs-on: ubuntu-latest
 
     steps:
+    # Passo 1: Baixa o código do repositório para o ambiente de execução
     - name: Checkout code
       uses: actions/checkout@v4
     
+    # Passo 2: Configura o ambiente .NET na versão especificada (8.0.x neste caso)
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
         
+    # Passo 3: Restaura as dependências do projeto definidas no arquivo .csproj
     - name: Restore dependencies
       run: dotnet restore
       
+    # Passo 4: Compila o código sem restaurar as dependências novamente (já restauradas no passo anterior)
     - name: Build
       run: dotnet build --no-restore
       
+    # Passo 5: Executa os testes unitários e gera o relatório de cobertura de código
     - name: Run unit tests with coverage
       run: dotnet test --configuration Release --no-restore --logger trx --results-directory TestResults /p:CollectCoverage=true /p:CoverletOutput=TestResults/coverage.opencover.xml /p:CoverletOutputFormat=opencover --collect:"XPlat Code Coverage"
 
+    # Passo 6: Publica os resultados dos testes unitários (.trx) como artefatos da pipeline
     - name: Publish Test Results
-      if: always()
+      if: always()  # Garante que este passo sempre será executado, mesmo se os testes falharem
       uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: '**/*.trx'
 
+    # Passo 7: Gera um relatório visual da cobertura de código usando o ReportGenerator
     - name: Generate coverage report
       run: |
         dotnet tool install --global dotnet-reportgenerator-globaltool
         reportgenerator "-reports:**/coverage.cobertura.xml" "-targetdir:coverage-report" -reporttypes:Html
 
+    # Passo 8: Faz o upload do relatório gerado para permitir o download e análise da cobertura de código
     - name: Upload Code Coverage Report
-      if: always()
+      if: always()  # Garante que será executado mesmo se houver falhas
       uses: actions/upload-artifact@v4
       with:
         name: code-coverage-report
