@@ -4,7 +4,9 @@ Este repositório contém exemplos práticos de **Testes Unitários** utilizando
 
 ## 📌 O que são Testes Unitários?
 
-Os **testes unitários** são pequenos testes automatizados que verificam o comportamento de **unidades isoladas** de código, como funções, métodos ou classes. Eles são escritos pelos desenvolvedores para garantir que cada parte do código funcione conforme esperado.
+Os **testes unitários** são pequenos testes automatizados que verificam o comportamento de **unidades isoladas** de código, como funções, métodos ou classes. 
+
+Eles são escritos pelos desenvolvedores para garantir que cada parte do código funcione conforme esperado.
 
 ### **📌 Características principais:**
 - **Isolados:** Não dependem de banco de dados, APIs ou outras partes do sistema.
@@ -14,31 +16,43 @@ Os **testes unitários** são pequenos testes automatizados que verificam o comp
 ## 🚀 Benefícios dos Testes Unitários
 
 ✅ **Aumentam a confiança no código:** Permitem identificar e corrigir erros antes da integração com outras partes do sistema.
+
 ✅ **Previnem falhas em produção:** Diminuem a probabilidade de bugs em funcionalidades críticas.
+
 ✅ **Facilitam a refatoração:** Garantem que as alterações não quebrem funcionalidades existentes.
+
 ✅ **Funcionam como documentação viva:** Servem como exemplos claros do uso esperado do código.
+
 ✅ **Aprimoram a colaboração:** Ajudam outros desenvolvedores a entender e testar o sistema facilmente.
 
 ## 🏗 Testes no Ciclo de Desenvolvimento
 
-Os testes unitários são fundamentais em práticas como **TDD (Test-Driven Development)**, onde os testes são escritos **antes do código**. Além disso, eles fazem parte da **CI/CD (Continuous Integration / Continuous Delivery)**, permitindo que cada nova alteração seja validada automaticamente antes da implantação.
+Os testes unitários são fundamentais em práticas como **TDD (Test-Driven Development)**, onde os testes são escritos **antes do código**.
+
+Além disso, eles fazem parte da **CI/CD (Continuous Integration / Continuous Delivery)**, permitindo que cada nova alteração seja validada automaticamente antes da implantação.
 
 ## 🔹 Outros tipos de Testes
 
 🔹 **Testes de Integração**: Verificam a comunicação entre diferentes partes do sistema.
+
 🔹 **Testes End-to-End (E2E)**: Simulam o fluxo completo de um usuário utilizando a aplicação.
 
 ## 🛠 O que testar?
 
 ✅ **Lógica de negócios**: Regras financeiras, cálculos, regras tributárias.
+
 ✅ **Regras de validação**: Certificar que os dados de entrada seguem os critérios esperados.
+
 ✅ **Fluxos críticos**: Garantir que funcionalidades essenciais não quebrem.
 
 ## 🔹 Características de um Bom Teste
 
 🔹 **Independência:** Cada teste deve rodar de forma isolada.
+
 🔹 **Clareza:** O nome do teste deve indicar exatamente o que ele verifica.
+
 🔹 **Foco:** Um único teste deve validar apenas uma funcionalidade.
+
 🔹 **Reprodutibilidade:** Deve sempre gerar o mesmo resultado para as mesmas entradas.
 
 ## 🔹 A Pirâmide de Testes
@@ -53,11 +67,17 @@ A pirâmide de testes divide os testes em três camadas:
 Os frameworks de teste **automatizam** a execução dos testes, promovem **boas práticas** e **aumentam a produtividade**.
 
 🔹 **.NET:** xUnit, NUnit, MSTest
+
 🔹 **Java:** JUnit, TestNG
+
 🔹 **JavaScript/TypeScript:** Jest, Mocha
+
 🔹 **Python:** pytest, unittest
+
 🔹 **C/C++:** Google Test (gTest), Catch2
+
 🔹 **PHP:** PHPUnit
+
 🔹 **Dart/Flutter:** test, Mockito
 
 ## 🔹 Introdução ao xUnit
@@ -144,7 +164,9 @@ Uma alta cobertura não significa necessariamente testes de qualidade, mas ajuda
 Os testes devem ser integrados às **pipelines de CI/CD** para garantir qualidade antes da implantação.
 
 ✅ **Garante que os testes rodem automaticamente** a cada alteração.
+
 ✅ **Evita problemas antes da integração.**
+
 ✅ **Melhora a qualidade e segurança da aplicação.**
 
 ### 🚀 Integração com CI/CD
@@ -152,8 +174,11 @@ A integração com **CI/CD (Continuous Integration/Continuous Deployment)** perm
 
 ### 🔹 Benefícios da Integração com CI/CD
 ✅ **Execução automática dos testes** a cada commit, pull request ou merge.
+
 ✅ **Rápida identificação de falhas** antes da entrega em produção.
+
 ✅ **Garante qualidade contínua** no código da aplicação.
+
 ✅ **Redução de retrabalho** ao evitar que código quebrado seja integrado.
 
 ### 🔹 Configuração da Pipeline
