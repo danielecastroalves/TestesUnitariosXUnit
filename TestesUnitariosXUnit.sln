@@ -11,6 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculadoraFinanceira", "Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculadoraFinanceira.Tests", "CalculadoraFinanceira.Tests\CalculadoraFinanceira.Tests.csproj", "{9D91BFEA-86C8-44CB-8D3F-CB80B432E260}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{E3D7EAFA-80BB-4589-9F9F-2D0E72E763F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{DAA0DD1E-25F7-4855-BA2F-2B10D3606D77}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\CI-BuildAndTest.yml = .github\workflows\CI-BuildAndTest.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +39,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CA2938C5-43C5-4F22-B66A-21B71748A159} = {FC9B9029-322E-4B3D-B584-1B7C5635370E}
 		{9D91BFEA-86C8-44CB-8D3F-CB80B432E260} = {6CCA4043-8658-4ED3-AEA7-4FA320B4D0EA}
+		{DAA0DD1E-25F7-4855-BA2F-2B10D3606D77} = {E3D7EAFA-80BB-4589-9F9F-2D0E72E763F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {292DBB72-2957-4EFC-B25F-8B6A296A2F74}
