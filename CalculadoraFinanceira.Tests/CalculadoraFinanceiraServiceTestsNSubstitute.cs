@@ -1,3 +1,4 @@
+using Shouldly;
 using NSubstitute;
 
 namespace CalculadoraFinanceira.Tests;
@@ -5,12 +6,12 @@ namespace CalculadoraFinanceira.Tests;
 public class CalculadoraFinanceiraServiceTestsNSubstitute
 {
     private readonly ICalculadoraFinanceira _calculadoraFinanceiraMock;
-    private readonly CalculadoraFinanceiraService _calculadoraFinanceiraService;
+    private readonly CalculadoraFinanceiraService _sut;
 
     public CalculadoraFinanceiraServiceTestsNSubstitute()
     {
         _calculadoraFinanceiraMock = Substitute.For<ICalculadoraFinanceira>();
-        _calculadoraFinanceiraService = new CalculadoraFinanceiraService(_calculadoraFinanceiraMock);
+        _sut = new CalculadoraFinanceiraService(_calculadoraFinanceiraMock);
     }
 
     #region Testes com Fact
@@ -26,10 +27,10 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
             .Returns(resultadoEsperado);
 
         // Act
-        var resultado = _calculadoraFinanceiraService.SomarValores(a, b);
+        var resultado = _sut.SomarValores(a, b);
 
         // Assert
-        Assert.Equal(resultadoEsperado, resultado);
+        resultado.ShouldBe(resultadoEsperado);
 
         _calculadoraFinanceiraMock
             .Received(1).Somar(a, b);
@@ -46,10 +47,10 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
             .Returns(20);
 
         // Act
-        var resultado = await _calculadoraFinanceiraService.CalcularDivisaoAsync(numerador, denominador);
+        var resultado = await _sut.CalcularDivisaoAsync(numerador, denominador);
 
         // Assert
-        Assert.Equal(20, resultado);
+        resultado.ShouldBe(20);
 
         await _calculadoraFinanceiraMock
             .Received(1).DividirAsync(numerador, denominador);
@@ -63,9 +64,9 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
 
         // Act & Assert
         var exception = await Assert.ThrowsAsync<ArgumentException>(
-            () => _calculadoraFinanceiraService.CalcularDivisaoAsync(numerador, denominador));
+            () => _sut.CalcularDivisaoAsync(numerador, denominador));
 
-        Assert.Equal("O denominador não pode ser zero.", exception.Message);
+        exception.Message.ShouldBe("O denominador não pode ser zero.");
 
         await _calculadoraFinanceiraMock
             .DidNotReceive().DividirAsync(
@@ -83,9 +84,9 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentException>(
-            () => _calculadoraFinanceiraService.CalcularJurosCompostos(principal, taxa, periodo));
+            () => _sut.CalcularJurosCompostos(principal, taxa, periodo));
 
-        Assert.Equal("Os valores devem ser positivos.", exception.Message);
+        exception.Message.ShouldBe("Os valores devem ser positivos.");
 
         _calculadoraFinanceiraMock
             .DidNotReceive().CalcularJurosCompostos(
@@ -103,9 +104,9 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentException>(
-            () => _calculadoraFinanceiraService.ConverterMoeda(valor, taxaDeConversao));
+            () => _sut.ConverterMoeda(valor, taxaDeConversao));
 
-        Assert.Equal("Valor e taxa de conversão devem ser positivos.", exception.Message);
+        exception.Message.ShouldBe("Valor e taxa de conversão devem ser positivos.");
 
         _calculadoraFinanceiraMock
             .DidNotReceive().ConverterMoeda(
@@ -122,9 +123,9 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentException>(
-            () => _calculadoraFinanceiraService.CalcularDesconto(valorOriginal, percentualDesconto));
+            () => _sut.CalcularDesconto(valorOriginal, percentualDesconto));
 
-        Assert.Equal("Valores inválidos para o desconto.", exception.Message);
+        exception.Message.ShouldBe("Valores inválidos para o desconto.");
 
         _calculadoraFinanceiraMock
            .DidNotReceive().ConverterMoeda(
@@ -145,10 +146,10 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
         _calculadoraFinanceiraMock.Somar(a, b).Returns(esperado);
 
         // Act
-        var resultado = _calculadoraFinanceiraService.SomarValores(a, b);
+        var resultado = _sut.SomarValores(a, b);
 
         // Assert
-        Assert.Equal(esperado, resultado);
+        resultado.ShouldBe(esperado);
 
         _calculadoraFinanceiraMock
             .Received(1).Somar(a, b);
@@ -163,10 +164,10 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
         _calculadoraFinanceiraMock.DividirAsync(numerador, denominador).Returns(esperado);
 
         // Act
-        var resultado = await _calculadoraFinanceiraService.CalcularDivisaoAsync(numerador, denominador);
+        var resultado = await _sut.CalcularDivisaoAsync(numerador, denominador);
 
         // Assert
-        Assert.Equal(esperado, resultado);
+        resultado.ShouldBe(esperado);
 
         await _calculadoraFinanceiraMock
             .Received(1).DividirAsync(numerador, denominador);
@@ -183,10 +184,10 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
         _calculadoraFinanceiraMock.EhPar(numero).Returns(esperado);
 
         // Act
-        var resultado = _calculadoraFinanceiraService.VerificarSeEhPar(numero);
+        var resultado = _sut.VerificarSeEhPar(numero);
 
         // Assert
-        Assert.Equal(esperado, resultado);
+        resultado.ShouldBe(esperado);
 
         _calculadoraFinanceiraMock
             .Received(1).EhPar(numero);
@@ -203,10 +204,10 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
             .Returns(esperado);
 
         // Act
-        var resultado = _calculadoraFinanceiraService.CalcularJurosCompostos(principal, taxa, periodo);
+        var resultado = _sut.CalcularJurosCompostos(principal, taxa, periodo);
 
         // Assert
-        Assert.Equal(esperado, resultado);
+        resultado.ShouldBe(esperado);
 
         _calculadoraFinanceiraMock
             .Received(1).CalcularJurosCompostos(
@@ -226,10 +227,10 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
             .Returns(esperado);
 
         // Act
-        var resultado = _calculadoraFinanceiraService.ConverterMoeda(valor, taxaDeConversao);
+        var resultado = _sut.ConverterMoeda(valor, taxaDeConversao);
 
         // Assert
-        Assert.Equal(esperado, resultado);
+        resultado.ShouldBe(esperado);
 
         _calculadoraFinanceiraMock
             .Received(1).ConverterMoeda(
@@ -248,10 +249,10 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
             .Returns(esperado);
 
         // Act
-        var resultado = _calculadoraFinanceiraService.CalcularDesconto(valorOriginal, percentualDesconto);
+        var resultado = _sut.CalcularDesconto(valorOriginal, percentualDesconto);
 
         // Assert
-        Assert.Equal(esperado, resultado);
+        resultado.ShouldBe(esperado);
 
         _calculadoraFinanceiraMock
            .Received(1).CalcularDesconto(
