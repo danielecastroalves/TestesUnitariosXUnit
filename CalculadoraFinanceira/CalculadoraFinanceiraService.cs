@@ -50,4 +50,12 @@ public class CalculadoraFinanceiraService(ICalculadoraFinanceira calculadoraFina
 
         return _calculadoraFinanceira.CalcularDesconto(valorOriginal, percentualDesconto);
     }
+
+    public bool EhPrimo(int numero) 
+    {
+        if (numero < 2) return false;
+        for (int i = 2; i <= Math.Sqrt(numero); i++)
+            if (numero % i == 0) return false;
+        return true;
+    }
 }

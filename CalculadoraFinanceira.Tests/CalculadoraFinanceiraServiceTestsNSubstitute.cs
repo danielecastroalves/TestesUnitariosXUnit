@@ -260,4 +260,11 @@ public class CalculadoraFinanceiraServiceTestsNSubstitute
                Arg.Any<decimal>());
     }
     #endregion
+
+    [Fact]
+    public void EhPrimo_QuandoValorForPrimo_DeveRetornarTrue()
+    {
+        var resultado = _sut.EhPrimo(7);
+        Assert.True(resultado);
+    }
 }
